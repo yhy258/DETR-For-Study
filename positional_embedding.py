@@ -18,8 +18,8 @@ class PositionalEmbedding(nn.Module):
         x_embed = self.col_embed(i) # w, embed_dim
         y_embed = self.row_embed(j) # h, embed_dim
 
-        pos = torch.concat([
+        pos = torch.cat([
                             x_embed.unsqueeze(0).repeat(h,1,1),
                             y_embed.unsqueeze(1).repeat(1,w,1)
-                            ], dim=-1).premute(2,0,1).unsqueeze(0).repeat(x.shape[0],1,1,1)
+                            ], dim=-1).permute(2,0,1).unsqueeze(0).repeat(x.shape[0],1,1,1)
         return pos # batch_size
