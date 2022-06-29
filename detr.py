@@ -18,7 +18,7 @@ class DETR(nn.Module):
 
     def forward(self, x):
         feature = self.backbone(x)
-        pos_embed = self.positional_embedding(x)
+        pos_embed = self.positional_embedding(feature)
 
         hs = self.transformer(self.input_proj(feature), self.query_embed.weight, pos_embed)[0]
 
